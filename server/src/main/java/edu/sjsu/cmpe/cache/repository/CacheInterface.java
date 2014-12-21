@@ -15,7 +15,7 @@ public interface CacheInterface {
     /**
      * Save a new entry in the repository
      * 
-     * @param newentry
+     * @param newEntry
      *            a entry instance to be create in the repository
      * @return an entry instance
      */
@@ -36,5 +36,14 @@ public interface CacheInterface {
      * @return a list of entries
      */
     List<Entry> getAll();
+
+    /**
+     * Delete an existing entry by key
+     *
+     * @param key
+     * a valid key
+     * @return a entry instance
+     */
+    void delete(Long key);
 
 }

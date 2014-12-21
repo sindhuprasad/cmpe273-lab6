@@ -1,19 +1,36 @@
 package edu.sjsu.cmpe.cache.client;
 
+/**
+ * Created by sindhu on 12/20/14.
+ */
 public class Client {
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("Starting Cache Client...");
-        CacheServiceInterface cache = new DistributedCacheService(
-                "http://localhost:3000");
+    public static  void main(String[] args){
+        CRDTClient crdtClient = new CRDTClient();
+        crdtClient.put(1, "a");
 
-        cache.put(1, "foo");
-        System.out.println("put(1 => foo)");
+        System.out.println("Sleeping. Bring down the server A now");
 
-        String value = cache.get(1);
-        System.out.println("get(1) => " + value);
+        try {
+            Thread.sleep(30000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
 
-        System.out.println("Existing Cache Client...");
+        crdtClient.put(1, "b");
+
+        System.out.println("Sleeping. Bring up the server A now");
+
+
+        try {
+            Thread.sleep(30000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+
+        System.out.println("Printing get output " + crdtClient.get(1));
+
     }
 
 }

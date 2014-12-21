@@ -60,4 +60,6 @@ public class Entry {
     public void setCreatedAt(DateTime createdAt) {
 	this.createdAt = createdAt;
     }
+
+
 }
